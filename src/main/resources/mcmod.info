@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "chemicl_laboratory",
+    "name": "Chemical Laboratory",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["Fe-K Alloy"],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
