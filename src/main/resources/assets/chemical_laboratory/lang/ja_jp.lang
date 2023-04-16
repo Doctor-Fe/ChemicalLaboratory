@@ -1,0 +1,6 @@
+
+tile.pipe.name=パイプ
+tile.pipe.tip0=最大輸送量: 125mB/t
+
+tile.pomp.name=ポンプ
+tile.pomp.tip0=電力消費: 5RF/t

@@ -3,10 +3,12 @@ package fenitride.chemicallaboratory.lists;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class Items {
 
-	public static Item SYRINGE;
+	public static Item PIPE = getItemFromBlock(Blocks.PIPE);
+	public static Item POMP = getItemFromBlock(Blocks.POMP);
 
 	private static Item getItemFromBlock(Block block)
 	{
@@ -20,5 +22,6 @@ public class Items {
 
 	public static void register()
 	{
+		ForgeRegistries.ITEMS.registerAll(PIPE);
 	}
 }

@@ -1,6 +1,6 @@
 package fenitride.chemicallaboratory.register;
 
-import net.minecraftforge.common.MinecraftForge;
+// import net.minecraftforge.common.MinecraftForge;
 
 public class EventRegister {
     public static void register() {

@@ -1,0 +1,6 @@
+
+tile.pipe.name=Pipe
+tile.pipe.tip0=Max Traffic: 125mB/t
+
+tile.pomp.name=Pomp
+tile.pomp.tip0=Required: 5RF/t

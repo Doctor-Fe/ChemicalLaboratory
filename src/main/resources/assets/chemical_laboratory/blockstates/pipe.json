@@ -1,0 +1,57 @@
+{
+    "multipart": [
+        {
+            "apply": {
+                "model": "chemical_laboratory:pipes/normal/center"
+            }
+        },
+        {
+            "when": {
+                "north": "true"
+            },
+            "apply": {
+                "model": "chemical_laboratory:pipes/normal/north"
+            }
+        },
+        {
+            "when": {
+                "south": "true"
+            },
+            "apply": {
+                "model": "chemical_laboratory:pipes/normal/south"
+            }
+        },
+        {
+            "when": {
+                "east": "true"
+            },
+            "apply": {
+                "model": "chemical_laboratory:pipes/normal/east"
+            }
+        },
+        {
+            "when": {
+                "west": "true"
+            },
+            "apply": {
+                "model": "chemical_laboratory:pipes/normal/west"
+            }
+        },
+        {
+            "when": {
+                "top": "true"
+            },
+            "apply": {
+                "model": "chemical_laboratory:pipes/normal/top"
+            }
+        },
+        {
+            "when": {
+                "bottom": "true"
+            },
+            "apply": {
+                "model": "chemical_laboratory:pipes/normal/bottom"
+            }
+        }
+    ]
+}
