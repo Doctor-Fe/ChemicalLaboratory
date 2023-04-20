@@ -1,0 +1,10 @@
+
+item.poison_powder.name=Poison Powder
+
+potion.effect.strongest_poison=Potion of Poison
+splash_potion.effect.strongest_poison=Splash Potion of Poison
+tipped_arrow.effect.strongest_poison=Arrow of Poison
+lingering_potion.effect.strongest_poison=Lingering Potion of Poison
+
+potion.potency.2=III
+potion.potency.3=IV

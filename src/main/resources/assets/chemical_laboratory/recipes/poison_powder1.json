@@ -1,0 +1,14 @@
+{
+    "group": "chemical_laboratory:poison_powder1",
+    "type":"forge:ore_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:poisonous_potato",
+            "count": 1
+        }
+    ],
+    "result": {
+        "item": "chemical_laboratory:poison_powder",
+        "count": 1
+    }
+}

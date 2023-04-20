@@ -1,12 +1,15 @@
 package fenitride.chemicallaboratory.lists;
 
+import fenitride.chemicallaboratory.ChemicalLaboratory;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class Items {
 
 	public static Item SYRINGE;
+	public static Item POISON_POWDER = getItemFromName(ChemicalLaboratory.MODID, "poison_powder");
 
 	private static Item getItemFromBlock(Block block)
 	{
@@ -20,5 +23,6 @@ public class Items {
 
 	public static void register()
 	{
+		ForgeRegistries.ITEMS.registerAll(POISON_POWDER);
 	}
 }

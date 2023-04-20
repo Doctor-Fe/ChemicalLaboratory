@@ -1,0 +1,10 @@
+
+item.poison_powder.name=毒の粉
+
+potion.effect.strongest_poison=毒のポーション
+splash_potion.effect.strongest_poison=毒のスプラッシュポーション
+tipped_arrow.effect.strongest_poison=毒の矢
+lingering_potion.effect.strongest_poison=毒の残留ポーション
+
+potion.potency.2=III
+potion.potency.3=IV

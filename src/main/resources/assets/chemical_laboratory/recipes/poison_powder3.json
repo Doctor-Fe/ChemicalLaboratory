@@ -1,0 +1,15 @@
+{
+    "group": "chemical_laboratory:poison_powder3",
+    "type":"forge:ore_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:fish",
+            "data": 3,
+            "count": 1
+        }
+    ],
+    "result": {
+        "item": "chemical_laboratory:poison_powder",
+        "count": 2
+    }
+}

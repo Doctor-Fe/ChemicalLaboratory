@@ -1,0 +1,14 @@
+{
+    "group": "chemical_laboratory:poison_powder2",
+    "type":"forge:ore_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:spider_eye",
+            "count": 1
+        }
+    ],
+    "result": {
+        "item": "chemical_laboratory:poison_powder",
+        "count": 2
+    }
+}
