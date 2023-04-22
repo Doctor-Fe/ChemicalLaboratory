@@ -1,9 +1,11 @@
 package fenitride.chemicallaboratory.register;
 
+import net.minecraft.init.Items;
+
 public class VanillaItemModifier {
     public static void modify() {
-		net.minecraft.init.Items.POTIONITEM.setMaxStackSize(16);
-		net.minecraft.init.Items.SPLASH_POTION.setMaxStackSize(16);
-		net.minecraft.init.Items.LINGERING_POTION.setMaxStackSize(16);
+		Items.POTIONITEM.setMaxStackSize(16);
+		Items.SPLASH_POTION.setMaxStackSize(16);
+		Items.LINGERING_POTION.setMaxStackSize(16);
     }
 }

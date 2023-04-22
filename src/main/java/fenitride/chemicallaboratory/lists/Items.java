@@ -8,8 +8,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class Items {
 
-	public static Item SYRINGE;
-	public static Item POISON_POWDER = getItemFromName(ChemicalLaboratory.MODID, "poison_powder");
+	// public static final Item SYRINGE;
+	public static final Item POISON_POWDER = getItemFromName(ChemicalLaboratory.MODID, "poison_powder");
 
 	private static Item getItemFromBlock(Block block)
 	{

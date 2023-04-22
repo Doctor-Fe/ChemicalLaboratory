@@ -1,7 +1,6 @@
 package fenitride.chemicallaboratory.register;
 
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
@@ -11,7 +10,7 @@ public class BrewingRecipeRegister {
     public static void register() {
         BrewingRecipeRegistry.addRecipe(
             PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("minecraft:strong_poison")),
-            new ItemStack(Items.POISONOUS_POTATO, 1),
+            new ItemStack(fenitride.chemicallaboratory.lists.Items.POISON_POWDER, 1),
             PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("chemical_laboratory:strongest_poison"))
         );
         BrewingRecipeRegistry.addRecipe( // Poison of Potion's another recipe.

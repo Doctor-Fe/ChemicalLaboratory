@@ -1,10 +1,16 @@
 
 item.poison_powder.name=Poison Powder
 
+effect.antidote=Antidote
+
 potion.effect.strongest_poison=Potion of Poison
 splash_potion.effect.strongest_poison=Splash Potion of Poison
 tipped_arrow.effect.strongest_poison=Arrow of Poison
 lingering_potion.effect.strongest_poison=Lingering Potion of Poison
+potion.effect.antidote=Antidote
+splash_potion.effect.antidote=Splash Antidote
+tipped_arrow.effect.antidote=Arrow of Antidote
+lingering_potion.effect.antidote=Lingering Antidote
 
 potion.potency.2=III
 potion.potency.3=IV

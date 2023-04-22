@@ -1,10 +1,16 @@
 
 item.poison_powder.name=毒の粉
 
+effect.antidote=解毒
+
 potion.effect.strongest_poison=毒のポーション
 splash_potion.effect.strongest_poison=毒のスプラッシュポーション
 tipped_arrow.effect.strongest_poison=毒の矢
 lingering_potion.effect.strongest_poison=毒の残留ポーション
+potion.effect.antidote=解毒剤
+splash_potion.effect.antidote=スプラッシュ解毒剤
+tipped_arrow.effect.antidote=解毒剤付きの矢
+lingering_potion.effect.antidote=残留解毒剤
 
 potion.potency.2=III
 potion.potency.3=IV
