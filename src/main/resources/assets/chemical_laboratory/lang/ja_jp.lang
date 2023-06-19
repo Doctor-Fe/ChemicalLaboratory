@@ -2,15 +2,23 @@
 item.poison_powder.name=毒の粉
 
 effect.antidote=解毒
+effect.purification=浄化
 
-potion.effect.strongest_poison=毒のポーション
-splash_potion.effect.strongest_poison=毒のスプラッシュポーション
-tipped_arrow.effect.strongest_poison=毒の矢
-lingering_potion.effect.strongest_poison=毒の残留ポーション
 potion.effect.antidote=解毒剤
 splash_potion.effect.antidote=スプラッシュ解毒剤
 tipped_arrow.effect.antidote=解毒剤付きの矢
 lingering_potion.effect.antidote=残留解毒剤
+potion.effect.purification=浄化のポーション
+splash_potion.effect.purification=浄化のスプラッシュポーション
+tipped_arrow.effect.purification=浄化の矢
+lingering_potion.effect.purification=浄化の残留ポーション
+potion.effect.strongest_poison=毒のポーション
+splash_potion.effect.strongest_poison=毒のスプラッシュポーション
+tipped_arrow.effect.strongest_poison=毒の矢
+lingering_potion.effect.strongest_poison=毒の残留ポーション
 
 potion.potency.2=III
 potion.potency.3=IV
+
+death.attack.purification=%1$sは浄化された。
+death.attack.purification.player=%1$sは%2$sによって浄化された。
