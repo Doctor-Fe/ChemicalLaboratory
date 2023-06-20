@@ -1,6 +1,7 @@
 package fenitride.chemicallaboratory.register;
 
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
@@ -8,20 +9,32 @@ import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 
 public class BrewingRecipeRegister {
     public static void register() {
-        BrewingRecipeRegistry.addRecipe(
-            PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("minecraft:strong_poison")),
-            new ItemStack(fenitride.chemicallaboratory.lists.Items.POISON_POWDER, 1),
-            PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("chemical_laboratory:strongest_poison"))
-        );
-        BrewingRecipeRegistry.addRecipe( // Poison of Potion's another recipe.
-            PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("minecraft:awkward")),
-            new ItemStack(fenitride.chemicallaboratory.lists.Items.POISON_POWDER),
-            PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("minecraft:poison"))
-        );
-        // BrewingRecipeRegistry.addRecipe( // Grinpowder to Potion of Poison
-        //     PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("minecraft:awkward")),
-        //     new ItemStack(Item.getByNameOrId("ic2:itemmisc"), 1, 150),
-        //     PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName("minecraft:poison"))
-        // );
+        tryRegisterWithPotionType("minecraft:strong_poison", new ItemStack(fenitride.chemicallaboratory.lists.Items.POISON_POWDER, 1), "chemical_laboratory:strongest_poison");
+        tryRegisterWithPotionType("minecraft:awkward", new ItemStack(fenitride.chemicallaboratory.lists.Items.POISON_POWDER, 1), "minecraft:poison");
+        tryRegisterWithPotionType("minecraft:awkward", new ItemStack(Item.getByNameOrId("ic2:itemmisc"), 1, 150), "minecraft:poison");
+    }
+
+    /**
+     * ポーションの醸造レシピを追加する関数です。
+     * @param oldEffect 要求されるポーション
+     * @param stack 要求されるアイテム
+     * @param newEffect 生成されるポーション
+     */
+    private static void tryRegisterWithPotionType(String oldEffect, ItemStack stack, String newEffect) {
+        ItemStack oldStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName(oldEffect));
+        ItemStack newStack = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, 1, 0), PotionType.getPotionTypeForName(newEffect));
+        tryRegister(oldStack, stack, newStack);
+    }
+
+    /**
+     * 醸造レシピを追加する関数です。
+     * @param oldPotion 要求されるアイテム (ポーションの位置に置かれるアイテム)
+     * @param stack 要求されるアイテム
+     * @param newStack 生成されるアイテム
+     */
+    private static void tryRegister(ItemStack oldStack, ItemStack item, ItemStack newStack) {
+        if (oldStack != null && item != null && newStack != null) {
+            BrewingRecipeRegistry.addRecipe(oldStack, item, newStack);
+        }
     }
 }
