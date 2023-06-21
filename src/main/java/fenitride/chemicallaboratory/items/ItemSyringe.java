@@ -63,7 +63,7 @@ public class ItemSyringe extends Item {
                 if (effect.getPotion().isInstant()) {
                     effect.getPotion().affectEntity(source, source, target, effect.getAmplifier(), 1.0D);
                 } else {
-                    target.addPotionEffect(effect);
+                    target.addPotionEffect(new PotionEffect(effect));
                 }
             }
             if (source instanceof EntityPlayer) {
