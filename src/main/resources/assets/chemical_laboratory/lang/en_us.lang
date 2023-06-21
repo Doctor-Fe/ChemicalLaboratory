@@ -1,5 +1,7 @@
 
+item.empty_syringe.name=Syringe (Empty)
 item.poison_powder.name=Poison Powder
+item.syringe.name=Syringe
 
 effect.antidote=Antidote
 effect.purification=Purification

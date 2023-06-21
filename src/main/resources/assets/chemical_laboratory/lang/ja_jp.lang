@@ -1,5 +1,7 @@
 
+item.empty_syringe.name=注射器 (空)
 item.poison_powder.name=毒の粉
+item.syringe.name=注射器
 
 effect.antidote=解毒
 effect.purification=浄化

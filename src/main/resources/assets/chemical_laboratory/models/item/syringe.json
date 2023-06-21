@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "chemical_laboratory:items/syringe/syringe_liquid",
+        "layer1": "chemical_laboratory:items/syringe/syringe"
+    }
+}
