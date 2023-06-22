@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PotionTypes {
 
-	public static final PotionType ANTIDOTE_1 = new PotionType("antidote", new PotionEffect(Potions.ANTIDOTE, 1200, 0, false, false)).setRegistryName("chemical_laboratory:antidote");
-	public static final PotionType PURIFICATION_1 = new PotionType("purification", new PotionEffect(Potions.PURIFICATION, 600, 0, false, true)).setRegistryName("chemical_laboratory:purification");
+	public static final PotionType ANTIDOTE_1 = new PotionType("antidote", new PotionEffect(Potions.ANTIDOTE, 1200, 0, true, true)).setRegistryName("chemical_laboratory:antidote");
+	public static final PotionType PURIFICATION_1 = new PotionType("purification", new PotionEffect(Potions.PURIFICATION, 600, 0)).setRegistryName("chemical_laboratory:purification");
 	public static final PotionType STRONGEST_POISON = new PotionType("strongest_poison", new PotionEffect(MobEffects.POISON, 1200, 2)).setRegistryName("chemical_laboratory:strongest_poison");
 
 	public static void register()

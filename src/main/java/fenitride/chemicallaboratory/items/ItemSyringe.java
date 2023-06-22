@@ -13,12 +13,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSyringe extends Item {
     public ItemSyringe() {
@@ -29,10 +32,18 @@ public class ItemSyringe extends Item {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-        if (entity instanceof EntityLivingBase) {
-            applyAllEffectTo(stack, player, (EntityLivingBase)entity);
+        if (!super.onLeftClickEntity(stack, player, entity)) {
+            if (entity instanceof EntityLivingBase) {
+                applyAllEffectTo(stack, player, (EntityLivingBase)entity);
+                if (!player.capabilities.isCreativeMode) {
+                    stack.shrink(1);
+                    player.addItemStackToInventory(new ItemStack(Items.EMPTY_SYRINGE, 1));
+                }
+            }
+            return false;
+        } else {
+            return true;
         }
-        return false;
     }
 
     @Override
@@ -43,7 +54,15 @@ public class ItemSyringe extends Item {
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-        return applyAllEffectTo(stack, entityLiving, entityLiving);
+        applyAllEffectTo(stack, entityLiving, entityLiving);
+        if (entityLiving instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer)entityLiving;
+            if (!player.capabilities.isCreativeMode) {
+                stack.shrink(1);
+                player.addItemStackToInventory(new ItemStack(Items.EMPTY_SYRINGE, 1));
+            }
+        }
+        return stack;
     }
 
     @Override
@@ -56,7 +75,7 @@ public class ItemSyringe extends Item {
         return EnumAction.NONE;
     }
 
-    public ItemStack applyAllEffectTo(ItemStack stack, EntityLivingBase source, EntityLivingBase target) {
+    public void applyAllEffectTo(ItemStack stack, EntityLivingBase source, EntityLivingBase target) {
         if (!target.world.isRemote) {
             List<PotionEffect> effects = PotionUtils.getEffectsFromStack(stack);
             for (PotionEffect effect: effects) {
@@ -66,19 +85,26 @@ public class ItemSyringe extends Item {
                     target.addPotionEffect(new PotionEffect(effect));
                 }
             }
-            if (source instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer)source;
-                if (!player.capabilities.isCreativeMode) {
-                    stack.shrink(1);
-                    player.addItemStackToInventory(new ItemStack(Items.EMPTY_SYRINGE, 1));
-                }
-            }
         }
-        return stack;
     }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         PotionUtils.addPotionTooltip(stack, tooltip, 1.0f);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public ItemStack getDefaultInstance()
+    {
+        ItemStack stack = super.getDefaultInstance();
+        NBTTagCompound potion = new NBTTagCompound();
+        potion.setString("Potion", "minecraft:water");
+        stack.setTagCompound(potion);
+        return stack;
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return super.hasEffect(stack) || !PotionUtils.getEffectsFromStack(stack).isEmpty();
     }
 }

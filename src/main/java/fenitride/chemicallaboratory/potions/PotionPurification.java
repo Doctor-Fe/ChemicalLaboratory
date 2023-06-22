@@ -8,7 +8,7 @@ import net.minecraft.util.DamageSource;
 public class PotionPurification extends Potion {
 
     public PotionPurification() {
-        super(false, 0xffff80);
+        super(false, 0xf0f080);
         setRegistryName(ChemicalLaboratory.MODID, "purification");
         setPotionName("effect.purification");
     }

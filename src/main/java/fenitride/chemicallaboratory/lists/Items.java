@@ -13,6 +13,7 @@ public class Items {
 	public static final Item SYRINGE = new ItemSyringe();
 	public static final Item POISON_POWDER = getItemFromName(ChemicalLaboratory.MODID, "poison_powder");
 
+	@SuppressWarnings("unused")
 	private static Item getItemFromBlock(Block block)
 	{
 		return new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName());

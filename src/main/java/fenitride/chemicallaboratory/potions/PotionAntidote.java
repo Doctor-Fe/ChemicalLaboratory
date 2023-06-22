@@ -9,7 +9,7 @@ import net.minecraft.potion.PotionEffect;
 
 public class PotionAntidote extends Potion {
     public PotionAntidote() {
-        super(false, 0xffdc80); // FIXME ポーションの色が反映されない
+        super(false, 0x5000ff);
         setRegistryName(ChemicalLaboratory.MODID, "antidote");
         setPotionName("effect.antidote");
     }
