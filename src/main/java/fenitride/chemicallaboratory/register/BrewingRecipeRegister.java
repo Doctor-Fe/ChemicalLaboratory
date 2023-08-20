@@ -12,6 +12,7 @@ public class BrewingRecipeRegister {
         tryRegisterWithPotionType("minecraft:strong_poison", new ItemStack(fenitride.chemicallaboratory.lists.Items.POISON_POWDER, 1), "chemical_laboratory:strongest_poison");
         tryRegisterWithPotionType("minecraft:awkward", new ItemStack(fenitride.chemicallaboratory.lists.Items.POISON_POWDER, 1), "minecraft:poison");
         tryRegisterWithPotionType("minecraft:awkward", new ItemStack(Item.getByNameOrId("ic2:itemmisc"), 1, 150), "minecraft:poison");
+        tryRegisterWithPotionType("minecraft:awkward", new ItemStack(Items.SKULL, 1, 1), "minecraft:wither");
     }
 
     /**
