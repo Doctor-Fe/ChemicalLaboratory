@@ -22,6 +22,6 @@ public class Items {
 
 	public static void register()
 	{
-		ForgeRegistries.ITEMS.registerAll(PIPE);
+		ForgeRegistries.ITEMS.registerAll(PIPE, POMP);
 	}
 }
