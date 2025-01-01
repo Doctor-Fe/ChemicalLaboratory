@@ -14,4 +14,9 @@ public class ClientProxy extends CommonProxy {
 	public void register() {
 		ColorHandlerRegister.register();
 	}
+
+	@Override
+	public boolean isRemote() {
+		return true;
+	}
 }

@@ -2,8 +2,6 @@ package fenitride.chemicallaboratory.brewing;
 
 import java.util.HashMap;
 
-import fenitride.chemicallaboratory.brewing.IBrewingModifier;
-
 import net.minecraft.potion.PotionEffect;
 
 public class EffectAddModifier implements IBrewingModifier {
