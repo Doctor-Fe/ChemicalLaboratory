@@ -1,6 +1,6 @@
 package fenitride.chemicallaboratory.tiles;
 
-import java.util.Optional;
+import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
@@ -21,15 +21,50 @@ public class TilePipe extends TileEntity implements ITickable {
     @Override
     public void update() {
         if (!world.isRemote) {
-            Optional<TileEntity> tile = Optional.ofNullable(this.world.getTileEntity(this.pos.offset(EnumFacing.DOWN)));
-            if (tile.isPresent()) {
-                Optional<IFluidHandler> capability = Optional.ofNullable(tile.get().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP));
-                if (capability.isPresent()) {
-                    IFluidHandler cap = capability.get();
-                    int amount = cap.fill(tank.getFluid(), false);
+            if (!this.tank.isEmpty()) {
+                TileEntity tile = this.world.getTileEntity(this.pos.offset(EnumFacing.DOWN));
+                if (tile != null) {
+                    IFluidHandler capability = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
+                    if (capability != null) {
+                        int amount = capability.fill(tank.getFluid(), false);
+                        if (amount > 0) {
+                            capability.fill(tank.getFluid(), true);
+                            tank.drain(amount, true);
+                        }
+                    }
+                }
+            }
+            if (!this.tank.isEmpty()) {
+                ArrayList<IFluidHandler> tiles = new ArrayList<IFluidHandler>();
+                for (int i = 0; i < 4; i += 1) {
+                    EnumFacing facing = EnumFacing.getHorizontal(i);
+                    EnumFacing opposite = facing.getOpposite();
+                    TileEntity tile = this.world.getTileEntity(this.pos.offset(facing));
+                    if (tile != null) {
+                        IFluidHandler handler = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, opposite);
+                        if (handler != null) {
+                            tiles.add(handler);
+                        }
+                    }
+                }
+                for (IFluidHandler handler : tiles) {
+                    int amount = handler.fill(tank.getFluid(), false);
                     if (amount > 0) {
-                        cap.fill(tank.getFluid(), true);
+                        handler.fill(tank.getFluid(), true);
                         tank.drain(amount, true);
+                    }
+                }
+            }
+            if (!this.tank.isEmpty()) {
+                TileEntity tile = this.world.getTileEntity(this.pos.offset(EnumFacing.UP));
+                if (tile != null) {
+                    IFluidHandler capability = tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.DOWN);
+                    if (capability != null) {
+                        int amount = capability.fill(tank.getFluid(), false);
+                        if (amount > 0) {
+                            capability.fill(tank.getFluid(), true);
+                            tank.drain(amount, true);
+                        }
                     }
                 }
             }
@@ -66,9 +101,9 @@ public class TilePipe extends TileEntity implements ITickable {
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        Optional<NBTTagCompound> tag = this.tank.getTagCompound();
-        if (tag.isPresent()) {
-            compound.setTag("tank0", tag.get());
+        NBTTagCompound tag = this.tank.getTagCompound();
+        if (tag != null) {
+            compound.setTag("tank0", tag);
         }
         return compound;
     }

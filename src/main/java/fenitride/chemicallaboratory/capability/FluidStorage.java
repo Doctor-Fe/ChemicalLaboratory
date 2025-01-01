@@ -1,7 +1,5 @@
 package fenitride.chemicallaboratory.capability;
 
-import java.util.Optional;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,32 +12,32 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class FluidStorage implements IFluidTank, IFluidHandler {
 
-    protected Optional<FluidStack> stack;
+    protected FluidStack stack;
     protected final int capacity;
 	protected IFluidTankProperties[] tankProperties;
 
     public FluidStorage(int capacity) {
         this.capacity = capacity;
-        this.stack = Optional.empty();
+        this.stack = null;
     }
 
     public boolean canFillTo(FluidStack stack) {
-        return this.stack.map(a -> a.isFluidEqual(stack)).orElse(true);
+        return this.stack == null || this.stack.isFluidEqual(stack);
     }
 
     public boolean isEmpty() {
-        return this.stack.map(a -> a.amount == 0).orElse(true);
+        return this.stack == null || this.stack.amount == 0;
     }
 
     @Override
     @Nullable
     public FluidStack getFluid() {
-        return this.stack.isPresent() ? this.stack.get() : null;
+        return stack;
     }
 
     @Override
     public int getFluidAmount() {
-        return this.stack.map(t -> t.amount).orElse(0);
+        return this.stack == null ? 0 : this.stack.amount;
     }
 
     @Override
@@ -56,12 +54,12 @@ public class FluidStorage implements IFluidTank, IFluidHandler {
     public int fill(FluidStack resource, boolean doFill) {
         if (this.canFillTo(resource)) {
             int v = this.capacity - getFluidAmount();
-            int actualAmount = Math.min(v, resource.amount);
+            int actualAmount = Math.min(v, resource != null ? resource.amount : 0);
             if (doFill) {
-                if (this.stack.isPresent()) {
-                    this.stack.get().amount += actualAmount;
+                if (this.stack != null) {
+                    this.stack.amount += actualAmount;
                 } else {
-                    this.stack = Optional.of(new FluidStack(resource.getFluid(), actualAmount));
+                    this.stack = new FluidStack(resource.getFluid(), actualAmount);
                 }
             }
             return actualAmount;
@@ -76,11 +74,11 @@ public class FluidStorage implements IFluidTank, IFluidHandler {
         if (!isEmpty()) {
             int actualAmount = Math.min(this.getFluidAmount(), maxDrain);
             if (actualAmount > 0) {
-                FluidStack stack = new FluidStack(this.stack.get().getFluid(), actualAmount);
+                FluidStack stack = new FluidStack(this.stack.getFluid(), actualAmount);
                 if (doDrain) {
-                    this.stack.get().amount = getFluidAmount() - actualAmount;
+                    this.stack.amount = getFluidAmount() - actualAmount;
                     if (this.getFluidAmount() == 0) {
-                        this.stack = Optional.empty();
+                        this.stack = null;
                     }
                 }
                 return stack;
@@ -97,7 +95,7 @@ public class FluidStorage implements IFluidTank, IFluidHandler {
     @Override
     @Nullable
     public FluidStack drain(FluidStack resource, boolean doDrain) {
-        if (!this.isEmpty() && this.stack.get().isFluidEqual(resource)) {
+        if (!this.isEmpty() && this.stack.isFluidEqual(resource)) {
             return drain(resource.amount, doDrain);
         } else {
             return null;
@@ -106,17 +104,17 @@ public class FluidStorage implements IFluidTank, IFluidHandler {
 
     public void readFromNBT(NBTTagCompound compound) {
         FluidStack stack = FluidStack.loadFluidStackFromNBT(compound);
-        this.stack = Optional.ofNullable(stack);
+        this.stack = stack;
     }
 
-    public Optional<NBTTagCompound> getTagCompound() {
-        if (this.stack.isPresent()) {
-            FluidStack stack = this.stack.get();
+    @Nullable
+    public NBTTagCompound getTagCompound() {
+        if (this.stack != null) {
             NBTTagCompound tag = new NBTTagCompound();
-            stack.writeToNBT(tag);
-            return Optional.of(tag);
+            this.stack.writeToNBT(tag);
+            return tag;
         } else {
-            return Optional.empty();
+            return null;
         }
     }
 }

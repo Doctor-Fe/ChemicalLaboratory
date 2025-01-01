@@ -2,7 +2,7 @@
     "multipart": [
         {
             "apply": {
-                "model": "chemical_laboratory:pipes/normal/center"
+                "model": "chemical_laboratory:pipes/center"
             }
         },
         {
@@ -10,7 +10,7 @@
                 "north": "true"
             },
             "apply": {
-                "model": "chemical_laboratory:pipes/normal/north"
+                "model": "chemical_laboratory:pipes/north"
             }
         },
         {
@@ -18,7 +18,7 @@
                 "south": "true"
             },
             "apply": {
-                "model": "chemical_laboratory:pipes/normal/south"
+                "model": "chemical_laboratory:pipes/south"
             }
         },
         {
@@ -26,7 +26,7 @@
                 "east": "true"
             },
             "apply": {
-                "model": "chemical_laboratory:pipes/normal/east"
+                "model": "chemical_laboratory:pipes/east"
             }
         },
         {
@@ -34,7 +34,7 @@
                 "west": "true"
             },
             "apply": {
-                "model": "chemical_laboratory:pipes/normal/west"
+                "model": "chemical_laboratory:pipes/west"
             }
         },
         {
@@ -42,7 +42,7 @@
                 "top": "true"
             },
             "apply": {
-                "model": "chemical_laboratory:pipes/normal/top"
+                "model": "chemical_laboratory:pipes/top"
             }
         },
         {
@@ -50,7 +50,7 @@
                 "bottom": "true"
             },
             "apply": {
-                "model": "chemical_laboratory:pipes/normal/bottom"
+                "model": "chemical_laboratory:pipes/bottom"
             }
         }
     ]
