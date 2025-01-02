@@ -8,12 +8,16 @@ import fenitride.chemicallaboratory.register.TileEntityRegister;
 public class CommonProxy {
 	public void registerPre() {
 		EventRegister.register();
-		TileEntityRegister.register();
+		TileEntityRegister.register(this.isRemote());
 		// EnchantmentRegister.register();
 		Blocks.register();
 		Items.register();
 	}
 
 	public void register() {
+	}
+
+	public boolean isRemote() {
+		return false;
 	}
 }
