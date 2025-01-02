@@ -12,6 +12,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 public class FluidStorage implements IFluidTank, IFluidHandler {
 
+    @Nullable
     protected FluidStack stack;
     protected final int capacity;
 	protected IFluidTankProperties[] tankProperties;
@@ -26,7 +27,7 @@ public class FluidStorage implements IFluidTank, IFluidHandler {
     }
 
     public boolean isEmpty() {
-        return this.stack == null || this.stack.amount == 0;
+        return this.getFluidAmount() == 0;
     }
 
     @Override
@@ -53,8 +54,7 @@ public class FluidStorage implements IFluidTank, IFluidHandler {
     @Override
     public int fill(FluidStack resource, boolean doFill) {
         if (this.canFillTo(resource)) {
-            int v = this.capacity - getFluidAmount();
-            int actualAmount = Math.min(v, resource != null ? resource.amount : 0);
+            int actualAmount = Math.min(this.capacity - getFluidAmount(), resource.amount);
             if (doFill) {
                 if (this.stack != null) {
                     this.stack.amount += actualAmount;
@@ -103,18 +103,47 @@ public class FluidStorage implements IFluidTank, IFluidHandler {
     }
 
     public void readFromNBT(NBTTagCompound compound) {
-        FluidStack stack = FluidStack.loadFluidStackFromNBT(compound);
-        this.stack = stack;
+        this.stack = FluidStack.loadFluidStackFromNBT(compound);
     }
 
     @Nullable
     public NBTTagCompound getTagCompound() {
+        NBTTagCompound tag = new NBTTagCompound();
         if (this.stack != null) {
-            NBTTagCompound tag = new NBTTagCompound();
             this.stack.writeToNBT(tag);
             return tag;
         } else {
             return null;
         }
+    }
+
+    @Nullable
+    public FluidStack tryFillTo(IFluidHandler handler, int maxAmount) {
+        FluidStack stack = this.drain(maxAmount, false);
+        if (stack == null) {
+            return null;
+        }
+        int actualAmount = handler.fill(stack, false);
+        if (actualAmount > 0) {
+            FluidStack actualStack = this.drain(actualAmount, true);
+            handler.fill(actualStack, true);
+            return actualStack;
+        }
+        return null;
+    }
+
+    @Nullable
+    public FluidStack tryDrainFrom(IFluidHandler handler, int maxAmount) {
+        FluidStack stack = handler.drain(maxAmount, false);
+        if (stack == null) {
+            return null;
+        }
+        int actualAmount = this.fill(stack, false);
+        if (actualAmount > 0) {
+            FluidStack actualStack = handler.drain(actualAmount, true);
+            this.fill(actualStack, true);
+            return actualStack;
+        }
+        return null;
     }
 }

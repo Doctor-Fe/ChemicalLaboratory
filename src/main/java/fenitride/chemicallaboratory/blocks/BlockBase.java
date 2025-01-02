@@ -11,5 +11,4 @@ public abstract class BlockBase extends Block {
         setRegistryName(ChemicalLaboratory.MODID, id);
         setUnlocalizedName(id);
     }
-    
 }
