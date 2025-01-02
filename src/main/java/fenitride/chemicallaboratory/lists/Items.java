@@ -15,6 +15,7 @@ public class Items {
 		return new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName());
 	}
 
+	@SuppressWarnings("unused")
 	private static Item getItemFromName(String modID, String name)
 	{
 		return new Item().setRegistryName(modID, name).setUnlocalizedName(name);
@@ -22,6 +23,6 @@ public class Items {
 
 	public static void register()
 	{
-		ForgeRegistries.ITEMS.registerAll(PIPE);
+		ForgeRegistries.ITEMS.registerAll(PIPE, POMP);
 	}
 }
