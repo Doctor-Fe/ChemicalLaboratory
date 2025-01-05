@@ -1,6 +1,9 @@
 package fenitride.chemicallaboratory.brewing;
 
 import java.util.HashMap;
+package fenitride.chemicallaboratory.brewing;
+
+import java.util.HashMap;
 
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
